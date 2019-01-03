@@ -3,6 +3,11 @@ languageCode = "en-us"
 title = "Writing drives thinking"
 theme = "hugo-coder"
 
+# Enable comments by entering your Disqus shortname
+disqusShortname = "colachg"
+# Enable Google Analytics by entering your tracking code
+googleAnalytics = "UA-131650139-1"
+
 [params]
     author = "Cola Chen"
     info = "Coder, Devops"
@@ -21,7 +26,7 @@ theme = "hugo-coder"
     rtl = false
 
     math = true
-    custom_css = ["css/custom.css"]
+    custom_css = []
 
 # Social links
 [[params.social]]
