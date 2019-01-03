@@ -1,4 +1,4 @@
-baseURL = "http://colachg.com/"
+baseURL = "https://blog.colachg.com/"
 languageCode = "en-us"
 title = "Writing drives thinking"
 theme = "hugo-coder"
