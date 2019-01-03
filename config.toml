@@ -1,0 +1,41 @@
+baseURL = "http://colachg.com/"
+languageCode = "en-us"
+title = "Writing drives thinking"
+theme = "hugo-coder"
+
+[params]
+    author = "Cola Chen"
+    info = "Coder, Devops"
+    description = "Cola's personal website"
+    keywords = "blog,developer,personal"
+    avatarurl = "images/avatar.jpg"
+
+    favicon_32 = "/img/favicon-32x32.png"
+    favicon_16 = "/img/favicon-16x16.png"
+
+    footercontent = "sometimes life is amazing."
+
+    hidecredits = true
+    hidecopyright = true
+
+    rtl = false
+
+    math = true
+    custom_css = ["css/custom.css"]
+
+# Social links
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github fa-2x"
+    weight = 1
+    url = "https://github.com/colachg/"
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
+# [[menu.main]]
+#     name = "About"
+#     weight = 2
+#     url = "/about/"
