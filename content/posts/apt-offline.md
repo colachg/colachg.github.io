@@ -7,7 +7,7 @@ tags = []
 categories = []
 +++
 
-# How to manage packages on an off-line Debian system
+## How to manage packages on an off-line Debian system
 
 There are plenty of off-line Debian systems just waiting to update index files, upgrade or install additional packages. This can be easily achieved by using apt-offline utility. I will shortly describe common usage scenario as it is very handy application.
 
@@ -32,11 +32,11 @@ There are plenty of off-line Debian systems just waiting to update index files, 
 - off-line system  
   `off-line$ sudo apt-offline set debian-update.sig --update`
 
-* on-line system
+- on-line system
   Move generated signature file debian-update.sig to the on-line Debian system.  
   `on-line$ apt-offline get debian-update.sig --bundle debian-update.zip --threads 2`
 
-* off-line system  
+- off-line system  
   `off-line$ sudo apt-offline install debian-update.zip`
 
 ## apt upgrade
