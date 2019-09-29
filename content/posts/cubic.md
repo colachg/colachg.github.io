@@ -1,8 +1,8 @@
 +++ 
-draft = true
+draft = false
 date = 2019-09-29T10:29:31+08:00
-title = ""
-slug = "" 
+title = "How to customize Ubuntu ISO"
+slug = "/cubic" 
 tags = []
 categories = []
 +++
