@@ -1,5 +1,5 @@
 +++ 
-draft = true
+draft = false
 date = 2019-09-29T10:29:40+08:00
 title = "Mange packages on offline Debian system"
 slug = "/apt-offline" 
