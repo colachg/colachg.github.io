@@ -27,56 +27,49 @@ There are plenty of off-line Debian systems just waiting to update index files, 
 
 ## apt update
 
-1. off-line system
+> Add source under `/etc/apt/sources.list.d/` if you need.
 
-   Add source under `/etc/apt/sources.list.d/` if you need.
+- off-line system  
+  `off-line$ sudo apt-offline set debian-update.sig --update`
 
-   > `off-line$ sudo apt-offline set debian-update.sig --update`
+* on-line system
+  Move generated signature file debian-update.sig to the on-line Debian system.  
+  `on-line$ apt-offline get debian-update.sig --bundle debian-update.zip --threads 2`
 
-2. on-line system
-
-   Move generated signature file debian-update.sig to the on-line Debian system.
-
-   > `on-line$ apt-offline get debian-update.sig --bundle debian-update.zip --threads 2`
-
-3. off-line system
-
-   > `off-line$ sudo apt-offline install debian-update.zip`
+* off-line system  
+  `off-line$ sudo apt-offline install debian-update.zip`
 
 ## apt upgrade
 
-1. off-line system
+- off-line system  
+  `off-line$ sudo apt-offline set debian-upgrade.sig --upgrade`
 
-   > `off-line$ sudo apt-offline set debian-upgrade.sig --upgrade`
+  > Upload debian-upgrade.sig to the on-line Debian system and download required files.
 
-2. on-line system
+- on-line system  
+  `apt-offline get debian-upgrade.sig --bundle debian-upgrade.zip --threads 3`
 
-   Upload debian-upgrade.sig to the on-line Debian system and download required files.
+  > Upload debian-upgrade.zip bundle to the off-line system and install it using apt-offline utility to update APT database.
 
-   > `apt-offline get debian-upgrade.sig --bundle debian-upgrade.zip --threads 3`
-
-3. off-line system  
-   Upload debian-upgrade.zip bundle to the off-line system and install it using apt-offline utility to update APT database.
-
-   > `off-line$ sudo apt-offline install debian-upgrade.zip`  
-   > `off-line$ sudo apt-get upgrade`
+- off-line system  
+  `off-line$ sudo apt-offline install debian-upgrade.zip`
+  `off-line$ sudo apt-get upgrade`
 
 ## apt install pkg
 
-1. off-line system
+- off-line system  
+  `off-line$ apt-offline set debian-install.sig --install-packages pkg1 pkg2 ...`
 
-   > `off-line$ apt-offline set debian-install.sig --install-packages pkg1 pkg2 ...`
+> Upload debian-install.sig to the on-line Debian system and download required files.
 
-2. on-line system
-   Upload debian-install.sig to the on-line Debian system and download required files.
+- on-line system  
+  `on-line$ apt-offline get debian-install.sig --bundle debian-install.zip`
 
-   > `on-line$ apt-offline get debian-install.sig --bundle debian-install.zip`
+> Upload debian-install.zip file to the off-line Debian system, install it using apt-offline utility to update APT database.
 
-3. off-line system
-   Upload debian-install.zip file to the off-line Debian system, install it using apt-offline utility to update APT database.
+- off-line system  
+  `off-line$ sudo apt-offline install debian-install.zip`
 
-   > `off-line$ sudo apt-offline install debian-install.zip`
+> Now you can install specified packages using regular apt-get utility.
 
-   Now you can install specified packages using regular apt-get utility.
-
-   > `off-line$ sudo apt-get install pkg1 pkg2`
+- `off-line$ sudo apt-get install pkg1 pkg2`
