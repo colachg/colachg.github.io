@@ -34,4 +34,5 @@ sudo apt install cubic
 
 - You can add any sources under `/etc/apt/sources.list.d/`
 
-* If you failed in the progress of installation with customize ISO at 'select and install software' step. **You show check your `/etc/apt/` and `/etc/apt/sources.list.d` dirs and then remove `*.save` in both of them**.
+- If you failed at step: 'select and install software' when install with your customize ISO . You should check your `/etc/apt/` and `/etc/apt/sources.list.d` dirs and then **remove `*.save`** under both of them.
+- `rm -rf /etc/apt/sources.list.d/*.save /etc/apt/*.save`
