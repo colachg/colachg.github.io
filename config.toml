@@ -10,7 +10,7 @@ googleAnalytics = "UA-131650139-1"
 
 [params]
     author = "Cola Chen"
-    info = "Coder, Devops"
+    info = "Coder, DevOps"
     description = "Cola's personal website"
     keywords = "blog,developer,personal"
     avatarurl = "images/avatar.jpg"
@@ -40,7 +40,7 @@ googleAnalytics = "UA-131650139-1"
     name = "Blog"
     weight = 1
     url  = "/posts/"
-# [[menu.main]]
-#     name = "About"
-#     weight = 2
-#     url = "/about/"
+[[menu.main]]
+    name = "About"
+    weight = 2
+    url = "/about/"
