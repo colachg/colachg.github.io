@@ -7,13 +7,11 @@ tags = []
 categories = []
 +++
 
-## Agile software development for the future world
-
 [Trantect](http://www.trantect.com/) (Chinese: 川陀大匠) is a software development startup in Nanjing, China. Inspired by FSM and the great computer scientists, engineers and hackers of last few decades, Trantect is looking forward to building a software development team of leading technologies, agile processes, and meaningful styles domestically and internationally.
 
-### Process of development (Scrum basesd)
+## Agile software development for the future world
 
-#### Plan
+### Plan
 
 **Story** comes from users, our supports help user to find and write down their requirements. Story has point to show the value and priority. (like: "[8 points] As a user I want to show my paid orders so that I can see can check my money.")  
 **Tasks** are what developers will do spilt by a story. Every task has points to evaluate its difficult or complexity.We use [plan poker](http://poker.trantect.com/) to decide points of tasks.  
@@ -21,7 +19,7 @@ categories = []
 
 **Trello** is used widely here to trace and backlog stories and tasks.
 
-#### Develop
+### Develop
 
 We use CI/CD to speed up our daily work. When developers finish their task, they will commit and push to self-hosted Gitlab-CE. Then the pipeline will be triggered to run code lint and unit tests. After all jobs of pipeline are green, leaders will review the code if fine it will be merged into master branch and trigger another pipelines.
 
