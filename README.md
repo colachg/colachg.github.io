@@ -1,4 +1,4 @@
-![Build Status](https://github.com/colachg/colachg.github.io/gh-pages)
+![github pages](https://github.com/colachg/colachg.github.io/workflows/github%20pages/badge.svg)
 
 # New post
 
