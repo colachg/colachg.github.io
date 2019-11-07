@@ -4,9 +4,7 @@ title = "Cola Chen"
 slug = "about"
 +++
 
-# Experience
-
-## DevOps
+## Experience
 
 - Setup CI/CD pipelines from scratch with Jenkins, Gitlab-CI and GoCD.(BUild Once Deploy Multiple Times)
 - Use Terraform and Ansible to make daily work automatic.
@@ -14,4 +12,4 @@ slug = "about"
 - network analyse
 - Scrum overtime working
 
-# Education
+## Education
