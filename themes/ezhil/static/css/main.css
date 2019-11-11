@@ -6,13 +6,18 @@ body {
     font-size: 16px;
 }
 
-a, a:hover {
+a,
+a:hover {
     color: #a00;
     text-decoration: none;
     word-break: break-word;
 }
 
-html,button,input,select,textarea {
+html,
+button,
+input,
+select,
+textarea {
     color: #333;
 }
 
@@ -42,7 +47,7 @@ img {
 }
 
 a img {
-    border:none;
+    border: none;
 }
 
 figure {
@@ -64,7 +69,7 @@ blockquote {
     margin-left: 1rem;
     font-style: italic;
     font-size: 1.4rem;
-    font-family: Georgia,bitstream charter,serif;
+    font-family: Georgia, bitstream charter, serif;
     border-left: 3px solid;
     border-color: #a00;
     padding-left: 20px;
@@ -79,7 +84,8 @@ blockquote em {
     font-weight: 600;
 }
 
-a,a:hover {
+a,
+a:hover {
     color: #a00;
     text-decoration: none
 }
@@ -88,8 +94,13 @@ a:hover {
     text-decoration: underline
 }
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: raleway,sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: raleway, sans-serif;
     line-height: 1.2;
     color: #333;
     font-weight: 200;
@@ -167,8 +178,8 @@ ul {
 }
 
 .site-title a {
-	color: #333;
-	text-decoration: none !important;
+    color: #333;
+    text-decoration: none !important;
 }
 
 .post ul li {
@@ -183,7 +194,7 @@ ul {
     margin-bottom: 0;
     margin-top: 0;
     padding: 20px;
-    background-color: transparent !important;
+    background-color: #183055 !important;
 }
 
 .highlight {
@@ -287,7 +298,7 @@ ul {
 }
 
 .post-tags a {
-	margin-right: 5px;
+    margin-right: 5px;
 }
 
 .post .post-header .meta {
