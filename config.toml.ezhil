@@ -1,0 +1,76 @@
+baseURL = "https://blog.colachg.com/"
+languageCode = "en-us"
+title = "Writing drives thinking"
+theme = "ezhil"
+
+# Enable syntax highlighting.
+# pygmentsstyle = "vs"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+# Enable comments by entering your Disqus shortname
+disqusShortname = "colachg"
+# Enable Google Analytics by entering your tracking code
+googleAnalytics = "UA-131650139-1"
+
+# Number of posts to show in recent posts list (Optional). Defaults to 10.
+paginate = 10
+
+[params]
+    # Blog subtitle which appears below blog title. Supports markdown.
+    subtitle = ""
+
+    # Content types which are included in home page recent posts list.
+    mainSections = ["posts"]
+
+    # Content types which are excludes Disqus comments.
+    disableDisqusTypes = ["page"]
+
+    # If social media links are enabled then enable this to fetch icons from CDN instead of hosted on your site.
+    featherIconsCDN = true
+
+    # Specify favicon (icons/i.png maps to static/icons/i.png). No favicon if not defined.
+    favicon = "icons/myicon.png"
+
+    # Switch to dark mode or auto detect mode from OS (Optional).
+    # "dark" will set mode to dark and "auto" will switch to dark mode if OS is in dark mode.
+    mode = "auto" # "dark" or "auto"
+
+    # Custom CSS added to default styles. Files added to `static` folder is copied as it is to
+    # root by Hugo. For example if you have custom CSS file under `static/css/custom.css` then
+    # you can specify custom css path as `css/custom.css`.
+    # customCSS = "css/custom.css"
+    # Custom CSS added to dark mode style.
+    # customDarkCSS = "css/custom-dark.css"
+
+    # Custom list of Javascript files to load. Just like custom CSS you can place js files under
+    # `static/js` folder and specify path here as `js/script-name.js`.
+    # customJS = []
+
+
+# Main menu which appears below site header.
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+# Social links
+[[params.social]]
+    name = "Github"
+    icon = "github"
+    weight = 1
+    url = "https://github.com/colachg/"
+
+# # Enable tags.
+# [taxonomies]
+#    tag = "tags"
