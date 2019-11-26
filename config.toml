@@ -1,74 +1,76 @@
 baseURL = "https://blog.colachg.com/"
 languageCode = "en-us"
-title = "cola"
-theme = "LeaveIt"
+title = "Writing drives thinking"
+theme = "ezhil"
 
-paginate = 12
-enableEmoji = true
-enableRobotsTXT = true
+# Enable syntax highlighting.
+# pygmentsstyle = "vs"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = "colachg"
 # Enable Google Analytics by entering your tracking code
 googleAnalytics = "UA-131650139-1"
 
-preserveTaxonomyNames = true
-
-[blackfriday]
-  hrefTargetBlank = true
-  nofollowLinks = true
-  noreferrerLinks = true
-
-[Permalinks]
- posts = "/:year/:filename/"
-
-[menu]
-  [[menu.main]]
-    name = "Blog"
-    url = "/posts/"
-    weight = 1
-
-  [[menu.main]]
-    name = "Categories"
-    url = "/categories/"
-    weight = 2
-
-  [[menu.main]]
-    name = "Tags"
-    url = "/tags/"
-    weight = 3
-
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 4
+# Number of posts to show in recent posts list (Optional). Defaults to 10.
+paginate = 10
 
 [params]
-    since = 2011
-    author = "colachg"                           # Author's name
-    avatar = "/images/me/dbbb-walle.png"           # Author's avatar
-    subtitle = "Sometimes life is amazing."         # Subtitle
-    cdn_url = ""           # Base CDN URL
-    home_mode = "" # post or other
+    # Blog subtitle which appears below blog title. Supports markdown.
+    subtitle = ""
 
-    google_verification = ""
-   
-    description = "" # site description
-    keywords = "" # site keywords
+    # Content types which are included in home page recent posts list.
+    mainSections = ["posts"]
 
-    beian = ""
-    baiduAnalytics = ""
+    # Content types which are excludes Disqus comments.
+    disableDisqusTypes = ["page"]
 
-    # license= '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
+    # If social media links are enabled then enable this to fetch icons from CDN instead of hosted on your site.
+    featherIconsCDN = true
 
-[params.social]
-    GitHub = "colachg"
-    # Twitter = "xxoo"
-    Email   = "colachg@gmail.com"
-    # Instagram = "xxoo"
-    # Wechat = "/images/me/wechat.png"  # Wechat QRcode image
-    # Facebook = "xxoo"
-    # Telegram = "xxoo"
-    # Dribbble = "xxoo"
-    # Medium = "xxoo"
+    # Specify favicon (icons/i.png maps to static/icons/i.png). No favicon if not defined.
+    favicon = "icons/myicon.png"
 
+    # Switch to dark mode or auto detect mode from OS (Optional).
+    # "dark" will set mode to dark and "auto" will switch to dark mode if OS is in dark mode.
+    mode = "auto" # "dark" or "auto"
+
+    # Custom CSS added to default styles. Files added to `static` folder is copied as it is to
+    # root by Hugo. For example if you have custom CSS file under `static/css/custom.css` then
+    # you can specify custom css path as `css/custom.css`.
+    # customCSS = "css/custom.css"
+    # Custom CSS added to dark mode style.
+    # customDarkCSS = "css/custom-dark.css"
+
+    # Custom list of Javascript files to load. Just like custom CSS you can place js files under
+    # `static/js` folder and specify path here as `js/script-name.js`.
+    # customJS = []
+
+
+# Main menu which appears below site header.
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+# Social links
+[[params.social]]
+    name = "Github"
+    icon = "github"
+    weight = 1
+    url = "https://github.com/colachg/"
+
+# # Enable tags.
+# [taxonomies]
+#    tag = "tags"
