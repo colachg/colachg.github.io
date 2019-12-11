@@ -4,9 +4,9 @@ date: 2019-12-11T15:09:12+08:00
 draft: false
 ---
 
-## WireGuard(FAST, MODERN, SECURE VPN TUNNEL)
+## FAST, MODERN, SECURE VPN TUNNEL
 
-WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful than IPsec, while avoiding the massive headache. It intends to be considerably more performant than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many different circumstances. Initially released for the Linux kernel, it is now cross-platform (Windows, macOS, BSD, iOS, Android) and widely deployable. It is currently under heavy development, but already it might be regarded as the most secure, easiest to use, and simplest VPN solution in the industry.
+WireGuard is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful than IPsec, while avoiding the massive headache. It intends to be considerably more performant than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many different circumstances. Initially released for the Linux kernel, it is now cross-platform (Windows, macOS, BSD, iOS, Android) and widely deployable. It is currently under heavy development, but already it might be regarded as the most secure, easiest to use, and simplest VPN solution in the industry.
 
 ### Install WireGuard
 
@@ -112,8 +112,17 @@ You have seen `DNS`,`PostUP` and `PostDown` above but did you think what matters
 
 For example: `192.168.0.6/22` is the dns server in the LAN and `192.168.3.111/22` is the WireGuard server with `wg0` (192.168.199.1/24). In this scenario, you shoud do this:
 
-- add `iptables -tnat -A PREROUTING -i wg0 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.0.6:53; iptables -A FORWARD -i ens3 -o wg0 -j ACCEPT` append the `PostUp`
-- add `iptables -tnat -A PREROUTING -i wg0 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.0.6:53; iptables -D FORWARD -i ens3 -o wg0 -j ACCEPT` append `PostDown`.
+- add this append to `PostUp`
+
+```shell
+iptables -tnat -A PREROUTING -i wg0 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.0.6:53; iptables -A FORWARD -i ens3 -o wg0 -j ACCEPT
+```
+
+- - add this append to `PostDown`
+
+````shell
+iptables -tnat -A PREROUTING -i wg0 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.0.6:53; iptables -D FORWARD -i ens3 -o wg0 -j ACCEPT
+```
 
 So the finally `/etc/wireguard/wg0.conf` should be this:
 
@@ -129,4 +138,4 @@ PrivateKey = <server private key>
 [Peer]
 PublicKey = HLVZ3c7CMHPRzlgPZBxYI7lYJpjdNnRIGhlHPeB9zSI=
 AllowedIPs = 192.168.199.2/32
-```
+````
