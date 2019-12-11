@@ -118,9 +118,9 @@ For example: `192.168.0.6/22` is the dns server in the LAN and `192.168.3.111/22
 iptables -tnat -A PREROUTING -i wg0 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.0.6:53; iptables -A FORWARD -i ens3 -o wg0 -j ACCEPT
 ```
 
-- - add this append to `PostDown`
+- add this append to `PostDown`
 
-````shell
+```shell
 iptables -tnat -A PREROUTING -i wg0 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.0.6:53; iptables -D FORWARD -i ens3 -o wg0 -j ACCEPT
 ```
 
@@ -138,4 +138,4 @@ PrivateKey = <server private key>
 [Peer]
 PublicKey = HLVZ3c7CMHPRzlgPZBxYI7lYJpjdNnRIGhlHPeB9zSI=
 AllowedIPs = 192.168.199.2/32
-````
+```
