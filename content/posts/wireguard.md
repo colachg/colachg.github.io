@@ -103,7 +103,18 @@ AllowedIPs = 0.0.0.0
 
 Client config done.
 
-3. Lets get it transferred to our device. We will do this using a QR code, which we can create on our server using qrencode. You can install this via `apt install qrencode`. To generate the QR code and display it on the screen:  
+3. Remember to add your client config to **server's** config file <"/etc/wireguard/wg0.conf"> and restart wireguard.
+
+```shell
+[Interface]
+...
+
+[Peer]
+PublicKey = <Client public key>
+AllowedIPs = 192.168.199.2/32
+```
+
+4. Lets get it transferred to our device. We will do this using a QR code, which we can create on our server using qrencode. You can install this via `apt install qrencode`. To generate the QR code and display it on the screen:  
    `qrencode -t ansiutf8 < /etc/wireguard/client.conf`
 
 ### Last but not least
