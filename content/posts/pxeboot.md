@@ -1,7 +1,7 @@
 ---
 title: "PxeBoot"
 date: 2019-12-25T09:29:59+08:00
-draft: true
+draft: false
 ---
 
 PXELinux is a network boot server and can be used as a replacement to boot CDs or USB. Devices boot from the network and the PXELinux server provides the bootstrap files. Often this is used to deploy new installations of Linux when a system boots.
