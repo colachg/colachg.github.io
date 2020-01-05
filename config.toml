@@ -4,7 +4,7 @@ title = "Writing drives thinking"
 theme = "ezhil"
 
 # Enable syntax highlighting.
-# pygmentsstyle = "vs"
+pygmentsstyle = "solarized-dark"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
