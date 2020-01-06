@@ -65,7 +65,7 @@ Firstly, we can download the Ubuntu 18.04 installer. This is compressed file tha
 
 Keeping everything tidy we will create a directory and expand the archive into the directory:
 
-```
+```shell
 mkdir ~/bionic-netboot
 tar zxf bionic-netboot.tar.gz -C ~/bionic-netboot
 ```
@@ -74,7 +74,7 @@ tar zxf bionic-netboot.tar.gz -C ~/bionic-netboot
 
 Having expanded the installed archive we now need to add the boot files to the TFTP Server. As we may install many Linux distributions we will keep these files in their own sub-directory within the root directory for the TFTP Server. For us, this was the directory /tftpboot. The two files we copy are linux, the kernel and initrd.gz the RAM disk. By Enclosing the two files within the brace brackets we can reduce the code to copy.
 
-```
+```shell
 sudo mkdir /tftpboot/bionic/
 sudo cp bionic-netboot/ubuntu-installer/amd64/{linux,initrd.gz} /tftpboot/bionic/
 ```
@@ -84,7 +84,7 @@ sudo cp bionic-netboot/ubuntu-installer/amd64/{linux,initrd.gz} /tftpboot/bionic
 The final task we need to complete is to update the PXE Linux configuration file.
 Adding a new stanza to PXE Install Ubuntu 18.04 will allow the options we need. The file we are editing is the default file. This can be found on out system at /tftpboot/pxelinux.cfg/default. We will append to the original content. The edited the file should read as the following.
 
-```
+```shell
 default menu.c32
 prompt 0
 menu title Boot Menu
@@ -107,7 +107,7 @@ Repetition is boring so it's necessary to make it automatically.
 
 After generating kickstart configuration you may add it to pxe configuration.
 
-```
+```shell
 default menu.c32
 prompt 0
 menu title Boot Menu
