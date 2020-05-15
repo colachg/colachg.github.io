@@ -1,6 +1,6 @@
 baseURL = "https://blog.colachg.com/"
 languageCode = "en-us"
-title = "Writing drives thinking"
+title = "cola"
 theme = "ezhil"
 
 # Enable syntax highlighting.
