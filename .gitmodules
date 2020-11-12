@@ -1,0 +1,3 @@
+[submodule "themes/ezhil-cola"]
+	path = themes/ezhil-cola
+	url = https://github.com/colachg/ezhil.git
