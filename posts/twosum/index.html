@@ -1,0 +1,73 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>TwoSum - Writing drives thinking</title><link rel=icon type=image/png href=icons/myicon.png><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:title" content="TwoSum"><meta property="og:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target."><meta property="og:type" content="article"><meta property="og:url" content="https://blog.colachg.com/posts/twosum/"><meta property="article:published_time" content="2019-11-07T11:29:45+08:00"><meta property="article:modified_time" content="2019-11-07T11:29:45+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="TwoSum"><meta name=twitter:description content="Given an array of integers, return indices of the two numbers such that they add up to a specific target."><link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel=stylesheet><link rel=stylesheet type=text/css media=screen href=https://blog.colachg.com/css/normalize.css><link rel=stylesheet type=text/css media=screen href=https://blog.colachg.com/css/main.css><link rel=stylesheet type=text/css href=https://blog.colachg.com/css/dark.css media="(prefers-color-scheme: dark)"><script src=https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js></script><script src=https://blog.colachg.com/js/main.js></script></head><body><div class="container wrapper post"><div class=header><base href=https://blog.colachg.com/><h1 class=site-title><a href=https://blog.colachg.com/>Writing drives thinking</a></h1><div class=site-description><h2></h2><nav class="nav social"><ul class=flat><a href=https://github.com/colachg/ title=Github><i data-feather=github></i></a></ul></nav></div><nav class=nav><ul class=flat><li><a href=/>Home</a></li><li><a href=/posts>All posts</a></li><li><a href=/about>About</a></li></ul></nav></div><div class=post-header><h1 class=title>TwoSum</h1><div class=meta>Posted at &mdash; Nov 7, 2019</div></div><div class=markdown><p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p><p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the same element twice.</p><p><strong>Example:</strong></p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+</code></pre></div><h2 id=write-the-test-first>Write the test first</h2><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#268bd2>func</span> <span style=color:#268bd2>TestTwoSum</span>(t <span style=color:#719e07>*</span>testing.T) {
+	got <span style=color:#719e07>:=</span> <span style=color:#268bd2>TwoSum</span>([]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>2</span>, <span style=color:#2aa198>7</span>, <span style=color:#2aa198>11</span>, <span style=color:#2aa198>15</span>}, <span style=color:#2aa198>9</span>)
+	expected <span style=color:#719e07>:=</span> [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>1</span>}
+
+	<span style=color:#719e07>if</span> got <span style=color:#719e07>!=</span> expected {
+		t.<span style=color:#268bd2>Errorf</span>(<span style=color:#2aa198>&#34;expected &#39;%v&#39; but got &#39;%v&#39;&#34;</span>, got, expected)
+	}
+}
+</code></pre></div><h2 id=try-to-run-the-test>Try to run the test</h2><p>Run the test <code>go test</code></p><p>Inspect the compilation error</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>./sum_test.go:6:9: undefined: TwoSum
+</code></pre></div><h2 id=write-the-minimal-amount-of-code-for-the-test-to-run-and-check-the-failing-test-output>Write the minimal amount of code for the test to run and check the failing test output</h2><p>Write enough code to satisfy the compiler and that&rsquo;s all - remember we want to check that our tests fail for the correct reason.</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#586e75>// TwoSum ...
+</span><span style=color:#586e75></span><span style=color:#268bd2>func</span> <span style=color:#268bd2>TwoSum</span>(nums []<span style=color:#dc322f>int</span>, target <span style=color:#dc322f>int</span>) [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span> {
+	<span style=color:#719e07>return</span> [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>1</span>, <span style=color:#2aa198>2</span>}
+}
+</code></pre></div><p>Now run the tests and we should be happy that the test is correctly reporting what is wrong.</p><p><code>sum_test.go:10: expected '[1 2]' but got '[0 1]'</code></p><h2 id=write-enough-code-to-make-it-pass>Write enough code to make it pass</h2><p>In the strictest sense of TDD we should now write the minimal amount of code to make the test pass. A pedantic programmer may do this</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#586e75>// TwoSum ...
+</span><span style=color:#586e75></span><span style=color:#268bd2>func</span> <span style=color:#268bd2>TwoSum</span>(nums []<span style=color:#dc322f>int</span>, target <span style=color:#dc322f>int</span>) [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span> {
+	<span style=color:#719e07>return</span> [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>1</span>}
+}
+</code></pre></div><p>Ah hah! Foiled again, TDD is a sham right?<br>We could write another test, with some different numbers to force that test to fail but that feels like a game of cat and mouse.</p><p>For now, let&rsquo;s fix it properly</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#586e75>// TwoSum ...
+</span><span style=color:#586e75></span><span style=color:#268bd2>func</span> <span style=color:#268bd2>TwoSum</span>(numbers []<span style=color:#dc322f>int</span>, target <span style=color:#dc322f>int</span>) [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span> {
+	<span style=color:#719e07>for</span> i <span style=color:#719e07>:=</span> <span style=color:#2aa198>0</span>; i &lt; <span style=color:#b58900>len</span>(numbers); i<span style=color:#719e07>++</span> {
+		<span style=color:#719e07>for</span> j <span style=color:#719e07>:=</span> i <span style=color:#719e07>+</span> <span style=color:#2aa198>1</span>; j &lt; <span style=color:#b58900>len</span>(numbers); j<span style=color:#719e07>++</span> {
+			<span style=color:#719e07>if</span> numbers[i]<span style=color:#719e07>+</span>numbers[j] <span style=color:#719e07>==</span> target {
+				<span style=color:#719e07>return</span> [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{i, j}
+			}
+		}
+	}
+	<span style=color:#719e07>return</span> <span style=color:#cb4b16>nil</span>;
+}
+</code></pre></div><p>Do you want more sufficient confidence? Let&rsquo;s use <a href=https://github.com/golang/go/wiki/TableDrivenTests>table driven tests</a> to build a list of test cases that can be tested in the same manner.</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#586e75>// sum_test.go
+</span><span style=color:#586e75></span><span style=color:#719e07>package</span> twosum
+
+<span style=color:#719e07>import</span> (
+	<span style=color:#2aa198>&#34;testing&#34;</span>
+)
+
+<span style=color:#268bd2>func</span> <span style=color:#268bd2>TestTwoSum</span>(t <span style=color:#719e07>*</span>testing.T) {
+	cases <span style=color:#719e07>:=</span> []<span style=color:#268bd2>struct</span> {
+		numbers []<span style=color:#dc322f>int</span>
+		target  <span style=color:#dc322f>int</span>
+		result  [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>
+	}{
+		{[]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>1</span>, <span style=color:#2aa198>2</span>}, <span style=color:#2aa198>3</span>, [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>1</span>}},
+		{[]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>2</span>, <span style=color:#2aa198>7</span>, <span style=color:#2aa198>11</span>, <span style=color:#2aa198>15</span>}, <span style=color:#2aa198>13</span>, [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>2</span>}},
+		{[]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>3</span>, <span style=color:#2aa198>7</span>, <span style=color:#2aa198>1</span>, <span style=color:#2aa198>15</span>}, <span style=color:#2aa198>4</span>, [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>2</span>}},
+		{[]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>2</span>, <span style=color:#2aa198>7</span>, <span style=color:#2aa198>11</span>, <span style=color:#2aa198>15</span>}, <span style=color:#2aa198>17</span>, [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>3</span>}},
+		{[]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>2</span>, <span style=color:#2aa198>7</span>, <span style=color:#2aa198>11</span>, <span style=color:#2aa198>15</span>}, <span style=color:#2aa198>26</span>, [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>2</span>, <span style=color:#2aa198>3</span>}},
+		{[]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>2</span>, <span style=color:#2aa198>7</span>, <span style=color:#2aa198>11</span>, <span style=color:#2aa198>15</span>}, <span style=color:#2aa198>9</span>, [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#2aa198>0</span>, <span style=color:#2aa198>1</span>}},
+	}
+
+	<span style=color:#719e07>for</span> _, test <span style=color:#719e07>:=</span> <span style=color:#719e07>range</span> cases {
+		got <span style=color:#719e07>:=</span> <span style=color:#268bd2>TwoSum</span>(test.numbers, test.target)
+		expected <span style=color:#719e07>:=</span> test.result
+		<span style=color:#719e07>if</span> got <span style=color:#719e07>!=</span> expected {
+			t.<span style=color:#268bd2>Errorf</span>(<span style=color:#2aa198>&#34;expected &#39;%v&#39; but got &#39;%v&#39;&#34;</span>, expected, got)
+		}
+	}
+}
+</code></pre></div><h2 id=refactor>Refactor</h2><p>For each element, we try to find its complement by looping through the rest of array which takes O(n) time.<br>Therefore, the time complexity is O(n^2)</p><p>Space complexity : O(1).</p><p>To improve our run time complexity, we need a more efficient way to check if the complement exists in the array. If the complement exists, we need to look up its index.<br>We reduce the look up time from O(n) to O(1) by trading space for speed.</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#268bd2>func</span> <span style=color:#268bd2>TwoSum</span>(nums []<span style=color:#dc322f>int</span>, target <span style=color:#dc322f>int</span>) [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span> {
+	numMap <span style=color:#719e07>:=</span> <span style=color:#b58900>make</span>(<span style=color:#268bd2>map</span>[<span style=color:#dc322f>int</span>]<span style=color:#dc322f>int</span>)
+	<span style=color:#719e07>for</span> index, num <span style=color:#719e07>:=</span> <span style=color:#719e07>range</span> nums {
+		<span style=color:#719e07>if</span> i, ok <span style=color:#719e07>:=</span> numMap[target<span style=color:#719e07>-</span>num]; ok {
+			<span style=color:#719e07>return</span> [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{i, index}
+		}
+		numMap[num] = index
+	}
+	<span style=color:#719e07>return</span> [<span style=color:#2aa198>2</span>]<span style=color:#dc322f>int</span>{<span style=color:#719e07>-</span><span style=color:#2aa198>1</span>, <span style=color:#719e07>-</span><span style=color:#2aa198>1</span>}
+}
+</code></pre></div><h2 id=wrapping-up>Wrapping up</h2><ul><li>Sometimes we should find the balance between time complexity and space complexity.</li></ul></div><div class=post-tags></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='colachg';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by
+Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><div class="footer wrapper"><nav class=nav><div>© Copyright notice | <a href=https://github.com/vividvilla/ezhil>Ezhil theme</a> | Built with <a href=https://gohugo.io>Hugo</a></div></nav></div><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-131650139-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script>feather.replace()</script></body></html>

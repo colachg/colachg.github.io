@@ -1,0 +1,83 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Tinc - Writing drives thinking</title><link rel=icon type=image/png href=icons/myicon.png><meta name=viewport content="width=device-width,initial-scale=1"><meta property="og:title" content="Tinc"><meta property="og:description" content="Tinc in docker  tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and encryption to create a secure private network between hosts on the Internet."><meta property="og:type" content="article"><meta property="og:url" content="https://blog.colachg.com/posts/tinc/"><meta property="article:published_time" content="2019-11-26T16:41:59+08:00"><meta property="article:modified_time" content="2019-11-26T16:41:59+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Tinc"><meta name=twitter:description content="Tinc in docker  tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and encryption to create a secure private network between hosts on the Internet."><link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel=stylesheet><link rel=stylesheet type=text/css media=screen href=https://blog.colachg.com/css/normalize.css><link rel=stylesheet type=text/css media=screen href=https://blog.colachg.com/css/main.css><link rel=stylesheet type=text/css href=https://blog.colachg.com/css/dark.css media="(prefers-color-scheme: dark)"><script src=https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js></script><script src=https://blog.colachg.com/js/main.js></script></head><body><div class="container wrapper post"><div class=header><base href=https://blog.colachg.com/><h1 class=site-title><a href=https://blog.colachg.com/>Writing drives thinking</a></h1><div class=site-description><h2></h2><nav class="nav social"><ul class=flat><a href=https://github.com/colachg/ title=Github><i data-feather=github></i></a></ul></nav></div><nav class=nav><ul class=flat><li><a href=/>Home</a></li><li><a href=/posts>All posts</a></li><li><a href=/about>About</a></li></ul></nav></div><div class=post-header><h1 class=title>Tinc</h1><div class=meta>Posted at &mdash; Nov 26, 2019</div></div><div class=markdown><h1 id=tinc-in-docker>Tinc in docker</h1><blockquote><p>tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and encryption to create a secure private network between hosts on the Internet. tinc is Free Software and licensed under the GNU General Public License version 2 or later. Because the VPN appears to the IP level network code as a normal network device, there is no need to adapt any existing software. This allows VPN sites to share information with each other over the Internet without exposing any information to others.</p></blockquote><h2 id=network-topology>Network Topology</h2><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback> Server A  [10.1.0.1] --------------\
+                                  |
+192.168.10.0/24                   |
+192.160.110.0/24              [INTERNET]------------------ [10.3.0.1] Server C
+                                  |
+                                  |                            192.168.30.0/24
+ Server B [10.2.0.1] --------------/                           192.168.130.0/24
+
+192.168.20.0/24
+192.168.120.0/24
+</code></pre></div><p>The Tinc VPN itself will use the dedicated network 192.168.0.0/29.</p><h2 id=quick-start>Quick start</h2><ol><li><p><code>mkdir venus</code> first create dir for configs</p></li><li><p>Run container to setup:</p></li></ol><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -it --rm<span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --name tinc <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --volume <span style=color:#2aa198>${</span><span style=color:#268bd2>PWD</span><span style=color:#2aa198>}</span>/venus/:/etc/tinc <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    colachen/tinc sh
+</code></pre></div><h3 id=configure-per-server-settings>Configure per server settings</h3><p>On each server, create a /etc/tinc/tinc.conf file. <code>venus</code> is the name of the VPN server, it can be whatever you like. This is a example configuration for server A:</p><ol start=3><li><code>vi /etc/tinc/tinc.conf</code></li></ol><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Name=A
+Device=/dev/net/tun
+</code></pre></div><p>Change the name on other servers.</p><ol start=4><li>On each server, create a /etc/tinc/tinc-up script.</li></ol><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#719e07>#!/bin/sh
+</span><span style=color:#719e07></span><span style=color:#586e75># This is for server A</span>
+ip link <span style=color:#b58900>set</span> <span style=color:#268bd2>$INTERFACE</span> up
+ip addr add 192.168.0.1/29 dev <span style=color:#268bd2>$INTERFACE</span>
+
+<span style=color:#586e75># route TO server A (leave commented out on server A</span>
+<span style=color:#586e75>#    uncomment on the other two)</span>
+<span style=color:#586e75># ip route add 192.168.10.0/24 dev $INTERFACE</span>
+<span style=color:#586e75># ip route add 192.168.110.0/24 dev $INTERFACE</span>
+
+<span style=color:#586e75># route TO server B (leave commented out on server B</span>
+<span style=color:#586e75>#    uncomment on the other two)</span>
+ip route add 192.168.20.0/24 dev <span style=color:#268bd2>$INTERFACE</span>
+ip route add 192.168.120.0/24 dev <span style=color:#268bd2>$INTERFACE</span>
+
+<span style=color:#586e75># route TO server C (leave commented out on server C</span>
+<span style=color:#586e75>#    uncomment on the other two)</span>
+ip route add 192.168.30.0/24 dev <span style=color:#268bd2>$INTERFACE</span>
+ip route add 192.168.130.0/24 dev <span style=color:#268bd2>$INTERFACE</span>
+</code></pre></div><p>The ip route statements tells the local gateway to route traffic bound for the other two campuses through the tinc VPN interface.</p><ol start=5><li>Make the script executable:
+<code>chmod a+x /etc/tinc/tinc-up</code></li></ol><h3 id=create-the-site-specific-configuration-file>Create the site specific configuration file</h3><ol start=6><li>Each site has a specific configuration file that is shared will all other sites.</li></ol><p><strong>Server A</strong>
+Create /etc/tinc/hosts/serverA:</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Subnet = 192.168.0.1/32
+Address = 10.1.0.1
+ConnectTo = serverB
+ConnectTo = serverC
+
+Subnet = 192.168.10.0/24
+Subnet = 192.168.110.0/24
+</code></pre></div><p><strong>Server B</strong>
+Create /etc/tinc/hosts/serverB:</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Subnet = 192.168.0.2/32
+Address = 10.2.0.1
+ConnectTo = serverA
+ConnectTo = serverC
+
+Subnet = 192.168.20.0/24
+Subnet = 192.168.120.0/24
+</code></pre></div><p><strong>Server C</strong>
+Create /etc/tinc/hosts/serverC:</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Subnet = 192.168.0.3/32
+Address = 10.3.0.1
+ConnectTo = serverA
+ConnectTo = serverB
+Subnet = 192.168.30.0/24
+Subnet = 192.168.130.0/24
+</code></pre></div><p>Note that while in the tinc-up script we specify a /29 mask (entire broadcast domain) the host file contains a /32 mask. This may be counterintuitive, but it is what allows the tinc daemon to know which broadcast packets are for this instance.</p><p>Also note that while we add the routes for all the other networks in the tinc-up script, we add only the subnets for this instance in the host file.</p><p>The ConnectTo statements connect to both of the other nodes. This creates a venus network. If there are explicit ConnectTo statements between all nodes, then if, for instance, connectivity between serverA and serverC is lost, traffic will flow serverA->serverB->serverC.</p><h3 id=create-the-public-and-private-keys>Create the public and private keys</h3><ol start=7><li>On each node, run:</li></ol><p><code>tincd -K</code></p><p>It will generate the public and private RSA keys, and prompt you if its ok to put them in:</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>/etc/tinc/rsa_key.priv
+/etc/tinc/hosts/hostname
+
+</code></pre></div><h3 id=copy-the-host-file-to-the-other-hosts>Copy the host file to the other hosts</h3><ol start=8><li>For each node, scp (or other means) the /etc/tinc/hosts/hostname file to the other node. In the end, the hosts directory on all three nodes will have three identical files.</li></ol><h3 id=directory-tree-for-a-running-tinc-configuration>Directory tree for a running tinc configuration</h3><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>/etc/tinc
+/etc/tinc
+/etc/tinc/rsa_key.priv               &lt;- unique to each host
+/etc/tinc/tinc.conf                  &lt;- unique to each host
+/etc/tinc/tinc-up                    &lt;- unique to each host
+/etc/tinc/hosts
+/etc/tinc/hosts/serverA              &lt;- same on all hosts
+/etc/tinc/hosts/serverB              &lt;- same on all hosts
+/etc/tinc/hosts/serverC              &lt;- same on all hosts
+</code></pre></div><ol start=9><li>Finally start the service:</li></ol><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --name tinc <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --net<span style=color:#719e07>=</span>host <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --device<span style=color:#719e07>=</span>/dev/net/tun <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --cap-add NET_ADMIN <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    --volume <span style=color:#2aa198>${</span><span style=color:#268bd2>PWD</span><span style=color:#2aa198>}</span>/venus:/etc/tinc <span style=color:#cb4b16>\
+</span><span style=color:#cb4b16></span>    colachen/tinc
+</code></pre></div><p>This will start a container loading persisted configuration from <code>/config/tinc</code> and creating the VPN on the host network.</p><h2 id=tips>Tips:</h2><p>If you run this on an gateway and want to bypass subnet. Remember to check the <code>/proc/sys/net/ipv4/ip_forward</code> value and configure iptables to do SNAT like this:</p><div class=highlight><pre style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sudo iptables -P FORWARD ACCEPT <span style=color:#719e07>(</span>maybe you can adjust it depends on your situation<span style=color:#719e07>)</span>
+sudo iptables -t nat -A POSTROUTING -o enp0s25 -s 192.168.254.248/29 -p icmp -j SNAT --to 192.168.2.160
+</code></pre></div></div><div class=post-tags></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='colachg';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by
+Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><div class="footer wrapper"><nav class=nav><div>© Copyright notice | <a href=https://github.com/vividvilla/ezhil>Ezhil theme</a> | Built with <a href=https://gohugo.io>Hugo</a></div></nav></div><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-131650139-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script>feather.replace()</script></body></html>
