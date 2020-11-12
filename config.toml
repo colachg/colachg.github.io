@@ -2,11 +2,16 @@ baseURL = "https://blog.colachg.com/"
 languageCode = "en-us"
 title = "Writing drives thinking"
 theme = "ezhil"
+paginate = 5
+copyright = "© Copyright notice"
 
 # Enable syntax highlighting.
 # pygmentsstyle = "vs"
+pygmentsstyle = "solarized-dark"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
+
+summaryLength = 20
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = "colachg"
@@ -71,6 +76,5 @@ weight = 3
     weight = 1
     url = "https://github.com/colachg/"
 
-# # Enable tags.
-# [taxonomies]
-#    tag = "tags"
+[taxonomies]
+tag = "tags"
