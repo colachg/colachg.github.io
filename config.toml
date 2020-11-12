@@ -2,7 +2,6 @@ baseURL = "https://blog.colachg.com/"
 languageCode = "en-us"
 title = "Writing drives thinking"
 theme = "ezhil"
-paginate = 5
 copyright = "© Copyright notice"
 
 # Enable syntax highlighting.
