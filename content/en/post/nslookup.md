@@ -1,8 +1,9 @@
 ---
-title: "nslookup not working inside container"
+title: "Nslookup not working inside container"
 date: 2021-12-10T15:57:06+08:00
 draft: false
 ---
+# 
 
 Today when I debug a CI pipeline error, I found something strange. Here was the first error:
 ![img.png](/images/nslookup_error.png)
