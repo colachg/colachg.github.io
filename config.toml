@@ -50,13 +50,14 @@ theme= "preferred-color-scheme"
 [Languages]
     [Languages.en]
     title = "Cola"
+    description = "Sometimes life is amazing."
     weight = 1
     LanguageName = "ENGLISH"
     contentDir = "content/en"
 
     [Languages.cn]
     title = "可乐橙"
-    description = "有时生活超乎想象"
+    description = "有时生活超乎想象。"
     weight = 2
     LanguageName = "中文"
     contentDir = "content/cn"
@@ -65,17 +66,17 @@ theme= "preferred-color-scheme"
     name = "Home"
     identifier = "en"
     weight = 100
-    url = "/"
+    url = "/en"
     [[Languages.en.menu.main]]
     name = "Posts"
     identifier = "posts"
     weight = 200
-    url = "/post"
+    url = "/en/post"
     [[Languages.en.menu.main]]
     name = "About"
     identifier = "about"
     weight = 300
-    url = "/about"
+    url = "/en/about"
 
     [[Languages.cn.menu.main]]
     name   = "主页"
