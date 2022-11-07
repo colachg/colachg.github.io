@@ -53,15 +53,7 @@ theme= "preferred-color-scheme"
     description = "Sometimes life is amazing."
     weight = 1
     LanguageName = "ENGLISH"
-    contentDir = "content/en"
-
-    [Languages.cn]
-    title = "可乐橙"
-    description = "有时生活超乎想象。"
-    weight = 2
-    LanguageName = "中文"
-    contentDir = "content/cn"
-
+    contentDir = "content/en/posts"
     [[Languages.en.menu.main]]
     name = "Home"
     identifier = "en"
@@ -71,13 +63,19 @@ theme= "preferred-color-scheme"
     name = "Posts"
     identifier = "posts"
     weight = 200
-    url = "/en/post"
+    url = "/en/posts"
     [[Languages.en.menu.main]]
     name = "About"
     identifier = "about"
     weight = 300
-    url = "/en/about"
+    url = "/en/about.md"
 
+    [Languages.cn]
+    title = "可乐橙"
+    description = "有时生活超乎想象。"
+    weight = 2
+    LanguageName = "中文"
+    contentDir = "content/cn"
     [[Languages.cn.menu.main]]
     name   = "主页"
     identifier = "主页"
