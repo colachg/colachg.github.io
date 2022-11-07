@@ -53,7 +53,7 @@ theme= "preferred-color-scheme"
     description = "Sometimes life is amazing."
     weight = 1
     LanguageName = "ENGLISH"
-    contentDir = "content/en/posts"
+    contentDir = "content/en"
     [[Languages.en.menu.main]]
     name = "Home"
     identifier = "en"
@@ -68,7 +68,7 @@ theme= "preferred-color-scheme"
     name = "About"
     identifier = "about"
     weight = 300
-    url = "/en/about.md"
+    url = "/en/about"
 
     [Languages.cn]
     title = "可乐橙"
@@ -85,4 +85,4 @@ theme= "preferred-color-scheme"
     name = "博文"
     identifier = "博文"
     weight = 200
-    url = "/cn/post"
+    url = "/cn/posts"
