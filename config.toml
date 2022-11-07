@@ -58,17 +58,17 @@ theme= "preferred-color-scheme"
     name = "Home"
     identifier = "en"
     weight = 100
-    url = "/en"
+    url = "/"
     [[Languages.en.menu.main]]
     name = "Posts"
     identifier = "posts"
     weight = 200
-    url = "/en/posts"
+    url = "/posts"
     [[Languages.en.menu.main]]
     name = "About"
     identifier = "about"
     weight = 300
-    url = "/en/about"
+    url = "/about"
 
     [Languages.cn]
     title = "可乐橙"
@@ -80,9 +80,9 @@ theme= "preferred-color-scheme"
     name   = "主页"
     identifier = "主页"
     weight = 100
-    url    = "/cn"
+    url    = "/"
     [[Languages.cn.menu.main]]
     name = "博文"
     identifier = "博文"
     weight = 200
-    url = "/cn/posts"
+    url = "/posts"

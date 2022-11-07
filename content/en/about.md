@@ -15,7 +15,7 @@ Motto: "Make it run, make it right, make it fast."
 - Keep learning something new and interesting.
 
 ## Work Experience
-Alauda - Nanjing Sep 2020 to present (cloud-native DevSecOps Engineer)
+**Alauda** - Nanjing Sep 2020 to present (cloud-native DevSecOps Engineer)
 - Migrated our build platform from region Hong Kong  to Chongqing on QCloud(Tencent Cloud) and saved about 30% IaaS cost.
 - Keeping the platform high available, daily building and deployment works well and reducing the pipeline failed rate by 12%.
 - Setup and maintain DevOps tool chains like: Harbor, Nexus, Gitlab, Sonarqube and Jenkins, providing some best practice for colleagues.
@@ -23,14 +23,14 @@ Alauda - Nanjing Sep 2020 to present (cloud-native DevSecOps Engineer)
 - Using Ansible to automatically doing daily work and working agilely with Jira and Confluence.
 - Debug and solving various strange incidents of  the internal DevOps platform.
 
-Trantect - Nanjing July 2016 to August 2020 (Team leader of DevOps)
+**Trantect** - Nanjing July 2016 to August 2020 (Team leader of DevOps)
 - Setup local VMware data center to support daily development, set up and managed 52 servers.
 - Manage 80+ microservices of Cloudtrust SaaS platform with Kubernetes and Helm.
 - Worked closely with vendors to slash company costs by 25% in this project using QCloud(AWS liked cloud provider in China).
 - Increase release frequency (once per week) and reduce 10% building time with the guide of "pipeline as code". (Terraform, Ansible, Jenkins, GoCD, Gitlab CI)
 - Monitor and analyse services to keep them high available to 99%.(using ELK, Prometheus and Grafana)
 
-Trantect - Nanjing July 2015 to June 2016 (Junior backend developer)
+**Trantect** - Nanjing July 2015 to June 2016 (Junior backend developer)
 - Paired with senior developer to learn JavaScript.
 - Follow the guidance of TDD and DDD.
 - Implemented several business independently.
