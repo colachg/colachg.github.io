@@ -8,7 +8,7 @@ summarylength = 10
 enableEmoji = true
 enableRobotsTXT = true
 
-pygmentsUseClasses = true   
+pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 
@@ -40,7 +40,7 @@ theme= "preferred-color-scheme"
   [[params.socialIcons]]
   icon = "fab fa-linkedin"
   title = "Linkedin"
-  url = "https://www.linkedin.com/in/cola-chen-395aba117/"
+  url = "https://www.linkedin.com/in/colachg/"
 
   [[params.socialIcons]]
   icon = "fas fa-envelope"
