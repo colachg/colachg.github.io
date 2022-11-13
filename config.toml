@@ -27,25 +27,25 @@ googleSiteVerify = "yx5n7Uc0JFAgDNDwt-B7cbI0RH3qbXV4SpPDnbgv0HQ"
 enableRobotsTXT = true
 rssFullContent = true
 
-[params.utterances]
-repo = "colachg/colachg.github.io"
-issueTerm = "pathname"
-theme= "preferred-color-scheme"
+    [params.utterances]
+    repo = "colachg/colachg.github.io"
+    issueTerm = "pathname"
+    theme= "preferred-color-scheme"
 
-  [[params.socialIcons]]
-  icon = "fab fa-github"
-  title = "GitHub"
-  url = "https://github.com/colachg"
+    [[params.socialIcons]]
+    icon = "fab fa-github"
+    title = "GitHub"
+    url = "https://github.com/colachg"
 
-  [[params.socialIcons]]
-  icon = "fab fa-linkedin"
-  title = "Linkedin"
-  url = "https://www.linkedin.com/in/colachg/"
+    [[params.socialIcons]]
+    icon = "fab fa-linkedin"
+    title = "Linkedin"
+    url = "https://www.linkedin.com/in/colachg/"
 
-  [[params.socialIcons]]
-  icon = "fas fa-envelope"
-  title = "e-mail"
-  url = "mailto:colachg@gmail.com"
+    [[params.socialIcons]]
+    icon = "fas fa-envelope"
+    title = "e-mail"
+    url = "mailto:colachg@gmail.com"
 
 [Languages]
     [Languages.en]
